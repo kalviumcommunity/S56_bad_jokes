@@ -1,11 +1,17 @@
 const express = require('express')
 const app = express()
-const port = 3000
+const dotenv = require('dotenv');
+const port = process.env.port||3000
 
 app.get('/ping', (req, res) => {
-  res.send('Hello World!')
+    try{
+        res.send('pong')
+    }catch(err){
+        res.send(err)
+    }
 })
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 })
+
