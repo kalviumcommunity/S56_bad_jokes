@@ -11,6 +11,14 @@ app.get('/ping', (req, res) => {
     }
 })
 
+app.get('/', (req, res) => {
+    try{
+        res.send('Hello World!')
+    }catch(err){
+        res.send(err)
+    }
+})
+
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 })
