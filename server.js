@@ -1,22 +1,31 @@
 const express = require('express')
+const { connected, isConnected } = require('./db');
 const app = express()
-const dotenv = require('dotenv');
-const port = process.env.port||3000
-
-app.get('/ping', (req, res) => {
-    try{
-        res.send('pong')
-    }catch(err){
-        res.send(err)
-    }
-})
+const port = 3000
 
 app.get('/', (req, res) => {
-        res.send('Hello World!')
-    
+    try{
+        res.json({
+            database : isConnected() ? 'connected' : 'disconnected'}
+        )
+    }
+    catch(err){
+        console.log(err)
+    }
 })
-
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
+app.get('/ping',(req,res)=>{
+    try{
+        res.send("Pong")
+    }
+    catch(err){
+        console.log(err)
+    }
 })
-
+if (require.main === module) {
+    connected()
+    app.listen(port, async () => {
+    //   await connected();
+  
+      console.log(`🚀 server running on PORT: ${port}`);
+});
+}
