@@ -8,7 +8,7 @@ function NavigationBar() {
             <ul className="nav-menu">
                 <li className="nav-item"><a href="#">Home</a></li>
                 <li className="nav-item"><a href="#">About</a></li>
-                <li className="nav-item"><a href="#">Trnding</a></li>
+                <li className="nav-item"><a href="#">Trending</a></li>
                 <li className="nav-item"><a href="#">Contact</a></li>
             </ul>
         </nav>
