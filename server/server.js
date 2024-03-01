@@ -1,10 +1,8 @@
 const express = require('express');
 const Router = require('./routes.js'); // Import the router from routes.js
-const { isConnected, connected } = require('./db'); 
+const { isConnected, connected } = require('./db.js'); 
 const app = express();
 const port = 3000;
-
-app.use('/', Router);
 
 app.get('/', (req, res) => {
     try {
@@ -16,6 +14,8 @@ app.get('/', (req, res) => {
     }
 });
 
+app.use(Router);
+
 app.get('/ping', (req, res) => {
     try {
         res.send("Pong");
@@ -25,7 +25,7 @@ app.get('/ping', (req, res) => {
 });
 
 if (require.main === module) {
-    // connected()
+    connected()
     app.listen(port, async () => {
         console.log(`🚀 server running on PORT: ${port}`);
     });
