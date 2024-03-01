@@ -1,13 +1,24 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Navbar from './Navbar';
+import axios from 'axios';
 import './Home.css';
-import data from '../data.json'; 
 
 const Home = () => {
-    const [searchTerm, setSearchTerm] = useState('');
+    const [jokes, setJokes] = useState([]);
+    const [error, setError] = useState(null);
 
-    const handleSearch = (e) => {
-        setSearchTerm(e.target.value);
+    useEffect(() => {
+        fetchData();
+    }, []);
+
+    const fetchData = async () => {
+        try {
+            const response = await axios.get('http://localhost:3000/getUsers');
+            setJokes(response.data);
+        } catch (error) {
+            console.error('Error fetching data:', error);
+            setError('Error fetching data. Please try again later.');
+        }
     };
 
     return (
@@ -15,12 +26,14 @@ const Home = () => {
             <Navbar />
             <div className='home'>
                 <h1>Home Page</h1>
-                <input type="text" value={searchTerm} onChange={handleSearch} placeholder="Search..." />
+                {error && <p>{error}</p>}
                 <div className="jokes-container">
-                    {data.jokes.map((joke, index) => (
-                        <div className="joke-card" key={index}>
-                            <p className="question">{joke.question}</p>
-                            <p className="answer">{joke.answer}</p>
+                    {jokes.map((joke, index) => (
+                        <div className="joke-card" key={joke._id}>
+                            <p className="question">{joke.Joke}</p>
+                            <p className="answer">Rating: {joke.Rating}</p>
+                            <p className="answer">Category: {joke.Category}</p>
+                            <p className="answer">Date Added: {joke.DateAdded}</p>
                         </div>
                     ))}
                 </div>
