@@ -3,7 +3,9 @@ const Router = require('./routes.js');
 const { isConnected, connected } = require('./db.js'); 
 const app = express();
 const port = 3000;
+
 const cors=require('cors')
+
 
 app.get('/', (req, res) => {
     try {
