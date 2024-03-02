@@ -1,8 +1,9 @@
 const express = require('express');
-const Router = require('./routes.js'); // Import the router from routes.js
+const Router = require('./routes.js'); 
 const { isConnected, connected } = require('./db.js'); 
 const app = express();
 const port = 3000;
+const cors=require('cors')
 
 app.get('/', (req, res) => {
     try {
@@ -15,6 +16,7 @@ app.get('/', (req, res) => {
 });
 
 app.use(Router);
+app.use(cors())
 
 app.get('/ping', (req, res) => {
     try {
