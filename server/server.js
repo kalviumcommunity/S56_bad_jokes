@@ -25,7 +25,7 @@ app.get('/ping', (req, res) => {
         res.send("Pong");
     } catch (err) {
         console.log(err);
-    }
+    }x1
 });
 
 if (require.main === module) {
