@@ -8,7 +8,7 @@ router.use(bodyParser.json());
 
 router.get('/getUsers', async(req, res) => {
     let result = await UserModel.find({});
-    res.send(result)
+    res.json(result)
    
 });
 router.post('/post', (req, res) => {
