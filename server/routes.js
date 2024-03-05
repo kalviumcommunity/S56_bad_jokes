@@ -16,11 +16,6 @@ router.post('/post', (req, res) => {
         UserModel.create(req.body).then((data) => {res.json(data)}).catch((err) => {res.json(err)})
         
 });
-router.get('/getUsers', (req, res) => {
-    
-    UserModel.find({}).then((data) => {res.json(data)}).catch((err) => {res.json(err)})
-    console.log(res.data);
-});
 
 
 router.patch('/patch', (req, res) => {
