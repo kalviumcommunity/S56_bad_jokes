@@ -2,11 +2,9 @@ const express = require('express');
 const router = express.Router();
 const {UserModel}=require("./models/Users.js");
 
+const bodyParser = require('body-parser');
 
-
-router.get('/get', (req, res) => {
-    res.send('GET request to the homepage')
-});
+router.use(bodyParser.json());
 
 router.get('/getUsers', async(req, res) => {
     let result = await UserModel.find({});
@@ -14,7 +12,12 @@ router.get('/getUsers', async(req, res) => {
    
 });
 router.post('/post', (req, res) => {
-  res.send('POST request to the homepage')
+    try {
+        res.send(req.body);
+    } catch (err) {
+        console.error('Error posting entity:', err);
+        res.status(500).json({ error: 'An error occurred while posting entity' });
+    }
 });
 
 router.patch('/patch', (req, res) => {
