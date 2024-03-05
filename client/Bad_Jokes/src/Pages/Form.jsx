@@ -1,10 +1,10 @@
-
 import React, { useState } from 'react';
 import axios from 'axios';
 import './Navbar.css';
 import Navbar from './Navbar';
 import { Link } from 'react-router-dom';
 const Form = () => {
+    const [JokeId, setJokeId] = useState(""); 
     const [joke, setJoke] = useState("");
     const [rating, setRating] = useState("");
     const [category, setCategory] = useState("");
@@ -13,6 +13,7 @@ const Form = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         const data = {
+            JokeId: JokeId,
             Joke: joke,
             Rating: parseFloat(rating), 
             Category: category,
@@ -34,6 +35,9 @@ const Form = () => {
                 <div>
                     <div>
                         <form className='form-insert' onSubmit={handleSubmit}>
+                            <label>Joke Id:</label>
+                            <input type="text" value={JokeId} onChange={(e) => setJokeId(e.target.value)} />
+
                             <label>Joke:</label>
                             <textarea value={joke} onChange={(e) => setJoke(e.target.value)} rows="4" required />
 
