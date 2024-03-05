@@ -12,13 +12,17 @@ router.get('/getUsers', async(req, res) => {
    
 });
 router.post('/post', (req, res) => {
-    try {
-        res.send(req.body);
-    } catch (err) {
-        console.error('Error posting entity:', err);
-        res.status(500).json({ error: 'An error occurred while posting entity' });
-    }
+    
+        UserModel.create(req.body).then((data) => {res.json(data)}).catch((err) => {res.json(err)})
+        
+    
 });
+router.get('/getUsers', (req, res) => {
+    
+    UserModel.find({}).then((data) => {res.json(data)}).catch((err) => {res.json(err)})
+    
+});
+
 
 router.patch('/patch', (req, res) => {
     res.send('PATCH request to the homepage')

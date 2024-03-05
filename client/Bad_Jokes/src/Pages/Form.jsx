@@ -45,9 +45,9 @@ const Form = () => {
 
                             <label>Date Added:</label>
                             <input type="date" value={dateAdded} onChange={(e) => setDateAdded(e.target.value)} required />
-                            <Link to="/">
+                            
                             <input type="submit" value="Submit" />
-                            </Link>
+                           
                         </form>
                     </div>
                 </div>
