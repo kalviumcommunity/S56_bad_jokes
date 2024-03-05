@@ -13,7 +13,7 @@ router.get('/getUsers', async(req, res) => {
 });
 router.post('/post', (req, res) => {
     try {
-        res.send(req.body);
+        res.json(req.body);
     } catch (err) {
         console.error('Error posting entity:', err);
         res.status(500).json({ error: 'An error occurred while posting entity' });
