@@ -17,6 +17,12 @@ router.post('/post', (req, res) => {
         
     
 });
+router.get('/getUsers', (req, res) => {
+    
+    UserModel.find({}).then((data) => {res.json(data)}).catch((err) => {res.json(err)})
+    
+});
+
 
 router.patch('/patch', (req, res) => {
     res.send('PATCH request to the homepage')
