@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Navbar from './Navbar';
 import './Home.css';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 const Home = () => {
     const [jokes, setJokes] = useState([]);
