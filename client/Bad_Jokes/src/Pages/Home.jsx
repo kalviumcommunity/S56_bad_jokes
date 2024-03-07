@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Navbar from './Navbar';
 import './Home.css';
+import { Link } from 'react-router-dom';
 
 const Home = () => {
     const [jokes, setJokes] = useState([]);
@@ -19,6 +20,14 @@ const Home = () => {
         }
     };
 
+    const handleDelete = (id) => {
+        axios.delete('https://bad-jokes.onrender.com/deleteUser/'+id)
+        .then(result=>{console.log(result)
+        window.location.reload()
+        })
+        .catch(err=>console.log(err))
+    }
+
     return (
         <div>
             <Navbar />
@@ -30,6 +39,9 @@ const Home = () => {
                             <p className="joke">{joke.Joke}</p>
                             <p className="rating">Rating: {joke.Rating}</p>
                             <p className="category">Category: {joke.Category}</p>
+                            <button
+                             onClick={(e)=>handleDelete(joke._id)}>Delete</button>
+                           <Link to={`/update/${joke._id}`}><button>Update</button></Link>
                         </div>
                     ))}
                 </div>
