@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const {UserModel}=require("./models/Users.js");
-
+const { validateData } = require('./Validator.js');
 const bodyParser = require('body-parser');
 
 router.use(bodyParser.json());
@@ -17,7 +17,13 @@ router.get('/getUsers/:id', async(req, res) => {
 
 });
 
-router.post('/post', (req, res) => {    
+router.post('/post', (req, res) => {   
+    console.log(req.body);
+    const {error} = validateData(req.body);
+    console.log(error);
+    if(error){
+        return res.status(400).json({error:"Invalid data provided",message:"Invalid data provided",details:error.details.map((error)=>error.message),status:"failed"});
+    } 
     UserModel.create(req.body).then((data) => {res.json(data)}).catch((err) => {res.json(err)})    
 });
 
