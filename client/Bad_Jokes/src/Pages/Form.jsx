@@ -5,20 +5,14 @@ import Navbar from './Navbar';
 import { Link } from 'react-router-dom';
 const Form = () => {
     const [JokeId, setJokeId] = useState(""); 
-    const [joke, setJoke] = useState("");
-    const [rating, setRating] = useState("");
-    const [category, setCategory] = useState("");
-    const [dateAdded, setDateAdded] = useState("");
+    const [Joke, setJoke] = useState("");
+    const [Rating, setRating] = useState("");
+    const [Category, setCategory] = useState("");
+    const [DateAdded, setDateAdded] = useState("");
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const data = {
-            JokeId: JokeId,
-            Joke: joke,
-            Rating: parseFloat(rating), 
-            Category: category,
-            DateAdded: dateAdded
-        };
+        const data = { JokeId,Joke,Rating, Category,DateAdded};
 
         try {
             const response = await axios.post("https://bad-jokes.onrender.com/post", data);
@@ -39,16 +33,16 @@ const Form = () => {
                             <input type="text" value={JokeId} onChange={(e) => setJokeId(e.target.value)} />
 
                             <label>Joke:</label>
-                            <textarea value={joke} onChange={(e) => setJoke(e.target.value)} rows="4" required />
+                            <textarea value={Joke} onChange={(e) => setJoke(e.target.value)} rows="4" required />
 
                             <label>Rating:</label>
-                            <input type="number" value={rating} onChange={(e) => setRating(e.target.value)} required />
+                            <input type="number" value={Rating} onChange={(e) => setRating(e.target.value)} required />
 
                             <label>Category:</label>
-                            <input value={category} onChange={(e) => setCategory(e.target.value)} required />
+                            <input value={Category} onChange={(e) => setCategory(e.target.value)} required />
 
                             <label>Date Added:</label>
-                            <input type="date" value={dateAdded} onChange={(e) => setDateAdded(e.target.value)} required />
+                            <input type="date" value={DateAdded} onChange={(e) => setDateAdded(e.target.value)} required />
                             
                             <input type="submit" value="Submit" />
                            
