@@ -3,7 +3,7 @@ const router = express.Router();
 const {UserModel}=require("./models/Users.js");
 const { validateData } = require('./Validator.js');
 const bodyParser = require('body-parser');
-
+const jwt = require("jsonwebtoken");
 router.use(bodyParser.json());
 
 router.get('/getUsers', async(req, res) => {
@@ -51,5 +51,11 @@ router.patch('/patch', (req, res) => {
 router.delete('/delete', (req, res) => {
     res.send('DELETE request to the homepage')
 });
+
+router.post("/auth", (req, res) => {
+    const { username } = req.body;
+      const token = jwt.sign({ username: username }, "secretkey")
+      res.send(token)
+})
 
 module.exports = router;

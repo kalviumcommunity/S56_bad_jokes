@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Navbar from './Navbar';
 import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 const LoginPage = ({ loggedin, setLoggedin }) => {
     const [username, setUsername] = useState('');
@@ -10,17 +11,19 @@ const LoginPage = ({ loggedin, setLoggedin }) => {
     // Function to handle login
     const handleLogin = () => {
         if (username.trim() !== '' && password.trim() !== '') {
-            document.cookie = `username=${username}; expires=Sun, 1 Jan 9999 12:00:00 UTC;`;
-            document.cookie = `password=${password}; expires=Sun, 1 Jan 9999 12:00:00 UTC;`;
-            console.log(document.cookie);
-            navigate('/');
+            // document.cookie = `username=${username}; expires=Sun, 1 Jan 9999 12:00:00 UTC;`;
+            axios.post('https://bad-jokes.onrender.com/auth', { username:username }).then((res) => {
+                const token = res.data;
+                document.cookie = `username=${token}; expires=Sun, 1 Jan 9999 12:00:00 UTC;`;
+                console.log(document.cookie);
+        });
         } else {
             alert('Username and password are required');
         }
     };
     const handleLogout = () => {
         document.cookie = 'username=; expires=Thu, 01 Jan 1970 00:00:00 UTC;';
-        document.cookie = 'password=; expires=Thu, 01 Jan 1970 00:00:00 UTC;';
+        // document.cookie = 'password=; expires=Thu, 01 Jan 1970 00:00:00 UTC;';
         setLoggedin(false);
         navigate('/');
     };
