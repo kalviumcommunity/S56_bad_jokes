@@ -23,7 +23,7 @@ const LoginPage = ({ loggedin, setLoggedin }) => {
     };
     const handleLogout = () => {
         document.cookie = 'username=; expires=Thu, 01 Jan 1970 00:00:00 UTC;';
-        // document.cookie = 'password=; expires=Thu, 01 Jan 1970 00:00:00 UTC;';
+        document.cookie = 'password=; expires=Thu, 01 Jan 1970 00:00:00 UTC;';
         setLoggedin(false);
         navigate('/');
     };
