@@ -3,6 +3,7 @@ import Navbar from './Navbar';
 import './Home.css';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import Nav from './Nav';
 
 const Home = () => {
     const [jokes, setJokes] = useState([]);
@@ -49,7 +50,7 @@ const Home = () => {
 
     return (
         <div>
-            <Navbar />
+            <Nav />
             <div className='home'>
                 <h1>Home Page</h1>
                 <div>

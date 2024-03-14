@@ -12,15 +12,24 @@ const LoginPage = ({ loggedin, setLoggedin }) => {
     const handleLogin = () => {
         if (username.trim() !== '' && password.trim() !== '') {
             // document.cookie = `username=${username}; expires=Sun, 1 Jan 9999 12:00:00 UTC;`;
-            axios.post('https://bad-jokes.onrender.com/auth', { username:username }).then((res) => {
+            axios.post('https://bad-jokes.onrender.com/auth', { username: username }).then((res) => {
                 const token = res.data;
                 document.cookie = `username=${token}; expires=Sun, 1 Jan 9999 12:00:00 UTC;`;
                 console.log(document.cookie);
-        });
+                // Send username to the specified endpoint
+                axios.post('https://bad-jokes.onrender.com/postUsers', { username: username })
+                    .then(response => {
+                        console.log('Username posted successfully:', response.data);
+                    })
+                    .catch(error => {
+                        console.error('Error posting username:', error);
+                    });
+            });
         } else {
             alert('Username and password are required');
         }
     };
+
     const handleLogout = () => {
         document.cookie = 'username=; expires=Thu, 01 Jan 1970 00:00:00 UTC;';
         document.cookie = 'password=; expires=Thu, 01 Jan 1970 00:00:00 UTC;';
@@ -42,7 +51,7 @@ const LoginPage = ({ loggedin, setLoggedin }) => {
                     <input type='password' value={password} onChange={(e) => setPassword(e.target.value)} />
                 </div>
                 <div>
-                    <button onClick={handleLogin}>Login</button>
+                    <Link to={"/Home"}><button onClick={handleLogin}>Login</button></Link>
                     <button onClick={handleLogout}>Logout</button>
                     <Link to='/'>
                         <button>Cancel</button>
