@@ -32,6 +32,11 @@ router.post('/post', (req, res) => {
     UserModel.create(req.body).then((data) => {res.json(data)}).catch((err) => {res.json(err)})    
 });
 
+router.post('/postUsers', (req, res) => {
+    console.log(req.body);
+    UserModela.create(req.body).then((data) => {res.json(data)}).catch((err) => {res.json(err)})    
+});
+
 router.put('/updateUser/:id', (req, res) => {
     const id=req.params.id;
     UserModel.findByIdAndUpdate({_id:id},

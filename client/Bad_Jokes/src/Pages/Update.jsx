@@ -8,6 +8,7 @@ const Update = () => {
     const [Rating, setRating] = useState("");
     const [Category, setCategory] = useState("");
     const [DateAdded, setDateAdded] = useState("");
+    const [CreatedBy, setCreated] = useState("");
    
     useEffect(() => {
         axios.get(`https://bad-jokes.onrender.com/getUsers/${id}`)
@@ -17,13 +18,14 @@ const Update = () => {
         setRating(result.data.Rating)
         setCategory(result.data.Category)
         setDateAdded(result.data.DateAdded)
+        setCreated(result.data.CreatedBy)
         })
         .catch(err=>console.log(err))
     },[])
 
     const handleSubmit =  (e) => {
         e.preventDefault();
-        axios.put("https://bad-jokes.onrender.com/updateUser/"+id, {JokeId,Joke,Rating, Category,DateAdded})
+        axios.put("https://bad-jokes.onrender.com/updateUser/"+id, {JokeId,Joke,Rating, Category,DateAdded,CreatedBy})
         .then(result=>console.log(result))
         .catch(err=>console.log(err))
     }
@@ -52,6 +54,10 @@ const Update = () => {
                 <div>
                     <label htmlFor="joke">Joke:</label>
                     <input type="date" id="dateAdded" name="dateAdded" value={DateAdded} onChange={(e) => setDateAdded(e.target.value)} required />
+                </div>
+                <div>
+                    <label htmlFor="Creator">CreatedBy:</label>
+                    <input type="text" id="createdBy" name="createdBy" value={CreatedBy} onChange={(e)=>setCreated(e.target.value)} required />
                 </div>
                 <button type="submit">Update Joke</button>
             </form>

@@ -9,7 +9,8 @@ const dataSchema = Joi.object({
     Joke: Joi.string().required(),
     Rating: Joi.number().required(),
     Category: Joi.string().required(),
-    DateAdded: Joi.string().required()
+    DateAdded: Joi.string().required(),
+    CreatedBy: Joi.string().required()
 });
 
 const validateData = validator(dataSchema);

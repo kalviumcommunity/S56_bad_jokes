@@ -14,7 +14,7 @@ const UserSchema = mongoose.Schema({
 const UserModel=mongoose.model("badjoke",UserSchema);
 
 const UserSchemaa=mongoose.Schema({
-    name:String
+    username:String
 });
 
 const UserModela=mongoose.model("user",UserSchemaa);
