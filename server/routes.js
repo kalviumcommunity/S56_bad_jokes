@@ -1,22 +1,27 @@
 const express = require('express');
 const router = express.Router();
 const {UserModel}=require("./models/Users.js");
+const {UserModela}=require("./models/Users.js");
 const { validateData } = require('./Validator.js');
 const bodyParser = require('body-parser');
 const jwt = require("jsonwebtoken");
 router.use(bodyParser.json());
+
 
 router.get('/getUsers', async(req, res) => {
     let result = await UserModel.find({});
     res.json(result)
    
 });
+router.get('/getUsersa', async(req, res) => {
+    let result = await UserModela.find({});
+    res.json(result)
+});
 router.get('/getUsers/:id', async(req, res) => {
     const id=req.params.id;
     UserModel.findById({_id:id}).then((data) => {res.json(data)}).catch((err) => {res.json(err)})
 
 });
-
 router.post('/post', (req, res) => {   
     console.log(req.body);
     const {error} = validateData(req.body);
@@ -27,12 +32,19 @@ router.post('/post', (req, res) => {
     UserModel.create(req.body).then((data) => {res.json(data)}).catch((err) => {res.json(err)})    
 });
 
+router.post('/postUsers', (req, res) => {
+    console.log(req.body);
+    UserModela.create(req.body).then((data) => {res.json(data)}).catch((err) => {res.json(err)})    
+});
+
 router.put('/updateUser/:id', (req, res) => {
     const id=req.params.id;
-    UserModel.findByIdAndUpdate({_id:id},{JokeId:req.body.JokeId,
+    UserModel.findByIdAndUpdate({_id:id},
+        {JokeId:req.body.JokeId,
         Joke:req.body.Joke,Rating:req.body.Rating
         ,Category:req.body.Category,
-        DateAdded:req.body.DateAdded})
+        DateAdded:req.body.DateAdded,
+        CreatedBy:req.body.CreatedBy})
     .then((data) => {res.json(data)})
     .catch((err) => {res.json(err)})
 });
