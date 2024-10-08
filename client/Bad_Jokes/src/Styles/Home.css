@@ -1,0 +1,107 @@
+/* Home.css */
+
+body {
+    background-color: #121212;
+    /* Dark background */
+    color: white;
+    /* Light text color for contrast */
+    font-family: Arial, sans-serif;
+    /* Change font if needed */
+}
+
+.home {
+    padding: 20px;
+}
+
+h1 {
+    color: #ff0000;
+    /* Red color for headings */
+    text-align: center;
+}
+
+.jokes-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.joke-card {
+    background-color: #1c1c1c;
+    /* Darker card background */
+    border: 1px solid #ff0000;
+    /* Red border for joke cards */
+    border-radius: 5px;
+    /* Rounded corners */
+    padding: 15px;
+    margin: 10px;
+    width: 250px;
+    /* Fixed width for cards */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    /* Soft shadow effect */
+}
+
+.joke {
+    color: #ff0000;
+    /* Red color for jokes */
+}
+
+.rating,
+.category,
+.Creator {
+    color: #ccc;
+    /* Lighter text for other details */
+}
+
+button {
+    background-color: #ff0000;
+    /* Red button background */
+    color: white;
+    /* White text for buttons */
+    border: none;
+    /* Remove default border */
+    padding: 10px 15px;
+    /* Button padding */
+    margin-top: 10px;
+    /* Space above buttons */
+    cursor: pointer;
+    /* Pointer cursor for buttons */
+    border-radius: 5px;
+    /* Rounded button corners */
+    transition: background-color 0.3s;
+    /* Transition effect */
+}
+
+button:not(:last-child) {
+    margin-right: 10px;
+    /* Space between buttons */
+}
+
+button:hover {
+    background-color: #cc0000;
+    /* Darker red on hover */
+}
+
+label {
+    color: #ff0000;
+    /* Red color for labels */
+}
+
+select {
+    background-color: #1c1c1c;
+    /* Dark background for dropdown */
+    color: white;
+    /* White text for dropdown */
+    border: 1px solid #ff0000;
+    /* Red border */
+    padding: 5px;
+    /* Padding for dropdown */
+    border-radius: 5px;
+    /* Rounded corners */
+}
+
+select:focus {
+    outline: none;
+    /* Remove outline on focus */
+    border-color: #cc0000;
+    /* Darker red border on focus */
+}

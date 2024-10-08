@@ -1,8 +1,7 @@
 import React from 'react';
-import './Navbar.css';
 import Login from './Login';
 import { Link } from 'react-router-dom';
-
+import '../Styles/Navbar.css';
 function NavigationBar() {
     return (
         <nav className="navbar">
