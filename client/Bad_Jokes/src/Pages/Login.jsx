@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Navbar from './Navbar';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-
+import '../Styles/Login.css';
 const LoginPage = ({ loggedin, setLoggedin }) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
@@ -37,29 +37,29 @@ const LoginPage = ({ loggedin, setLoggedin }) => {
         navigate('/');
     };
 
-    return (
-        <div>
-            <Navbar />
+return (
+    <div>
+        <Navbar />
+        <div  className="container">
+            <h1>Login Page</h1>
             <div>
-                <h1>Login Page</h1>
-                <div>
-                    <label>Enter Username:</label>
-                    <input type='text' value={username} onChange={(e) => setUsername(e.target.value)} />
-                </div>
-                <div>
-                    <label>Enter Password:</label>
-                    <input type='password' value={password} onChange={(e) => setPassword(e.target.value)} />
-                </div>
-                <div>
-                    <Link to={"/Home"}><button onClick={handleLogin}>Login</button></Link>
-                    <button onClick={handleLogout}>Logout</button>
-                    <Link to='/'>
-                        <button>Cancel</button>
-                    </Link>
-                </div>
+                <label>Enter Username:</label>
+                <input type='text' value={username} onChange={(e) => setUsername(e.target.value)} />
+            </div>
+            <div>
+                <label>Enter Password:</label>
+                <input type='password' value={password} onChange={(e) => setPassword(e.target.value)} />
+            </div>
+            <div>
+                <Link to={"/"}><button className="link-btn" onClick={handleLogin}>Login</button></Link>
+                <button className="cancel-btn" onClick={handleLogout}>Logout</button>
+                <Link to='/'>
+                    <button className="cancel-btn">Cancel</button>
+                </Link>
             </div>
         </div>
-    );
-};
+    </div>
+);
+}
 
 export default LoginPage;

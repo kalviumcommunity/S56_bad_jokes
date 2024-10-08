@@ -57,7 +57,7 @@ const Update = () => {
                 </div>
                 <div>
                     <label htmlFor="Creator">CreatedBy:</label>
-                    <input type="text" id="createdBy" name="createdBy" value={CreatedBy} onChange={(e)=>setCreated(e.target.value)} required />
+                    <input type="text" id="createdBy" name="CreatedBy" value={CreatedBy} onChange={(e)=>setCreated(e.target.value)} required />
                 </div>
                 <button type="submit">Update Joke</button>
             </form>

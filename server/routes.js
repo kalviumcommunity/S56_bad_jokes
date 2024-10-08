@@ -39,6 +39,7 @@ router.post('/postUsers', (req, res) => {
 
 router.put('/updateUser/:id', (req, res) => {
     const id=req.params.id;
+    
     UserModel.findByIdAndUpdate({_id:id},
         {JokeId:req.body.JokeId,
         Joke:req.body.Joke,Rating:req.body.Rating

@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import './Navbar.css';
 import Navbar from './Navbar';
 import { Link } from 'react-router-dom';
+import '../Styles/Form.css';
 const Form = () => {
     const [JokeId, setJokeId] = useState(""); 
     const [Joke, setJoke] = useState("");
@@ -39,7 +39,7 @@ const Form = () => {
                             <input type="number" value={Rating} onChange={(e) => setRating(e.target.value)} required />
 
                             <label>Category:</label>
-                            <input value={Category} onChange={(e) => setCategory(e.target.value)} required />
+                            <input type="text" value={Category} onChange={(e) => setCategory(e.target.value)} required />
 
                             <label>Date Added:</label>
                             <input type="date" value={DateAdded} onChange={(e) => setDateAdded(e.target.value)} required />
